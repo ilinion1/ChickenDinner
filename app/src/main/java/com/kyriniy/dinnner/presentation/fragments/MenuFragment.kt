@@ -17,7 +17,6 @@ import com.kyriniy.dinnner.presentation.GameViewModel
 
 class MenuFragment : Fragment() {
     lateinit var binding: FragmentMenuBinding
-    private val viewModel by lazy { ViewModelProvider(requireActivity())[GameViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

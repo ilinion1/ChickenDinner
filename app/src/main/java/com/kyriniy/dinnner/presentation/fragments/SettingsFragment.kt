@@ -16,7 +16,8 @@ import com.kyriniy.dinnner.presentation.GameViewModel
 
 class SettingsFragment : Fragment() {
     lateinit var binding: FragmentSetingsBinding
-    lateinit var viewModel: GameViewModel
+
+    private val viewModel by lazy{ ViewModelProvider(requireActivity())[GameViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,6 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[GameViewModel::class.java]
         when(viewModel.level){
             "easy" -> {
                 binding.rdEasy.isChecked = true

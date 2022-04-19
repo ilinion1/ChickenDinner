@@ -11,12 +11,13 @@ import com.kyriniy.dinnner.R
 import com.kyriniy.dinnner.databinding.FragmentRecordBinding
 import com.kyriniy.dinnner.presentation.GameViewModel
 import com.kyriniy.dinnner.presentation.RecordAdapter
+import javax.inject.Inject
 
 
 class RecordFragment : Fragment() {
     lateinit var binding: FragmentRecordBinding
-    private val viewModel by lazy { ViewModelProvider(requireActivity())[GameViewModel::class.java] }
-    lateinit var adapter: RecordAdapter
+    private val viewModel by lazy{ ViewModelProvider(requireActivity())[GameViewModel::class.java] }
+  lateinit var adapter: RecordAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
