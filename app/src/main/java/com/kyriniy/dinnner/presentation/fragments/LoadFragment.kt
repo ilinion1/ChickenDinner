@@ -19,6 +19,7 @@ import com.facebook.FacebookSdk
 import com.facebook.applinks.AppLinkData
 import com.google.android.gms.ads.identifier.AdvertisingIdClient
 import com.kyriniy.dinnner.R
+import com.kyriniy.dinnner.data.api.ApiFactory
 import com.kyriniy.dinnner.databinding.FragmentLoadBinding
 import com.kyriniy.dinnner.presentation.GameViewModel
 import com.kyriniy.dinnner.presentation.MyApp
@@ -194,7 +195,6 @@ class LoadFragment : Fragment() {
                 "&af_status=$afStatus" + "&af_channel=$afChannel" + "&campaign=$campaign" +
                 "&is_first_launch=$isFirstLaunch" + "&sub1=${subAll[0]}" + "&sub2=${subAll[1]}" +
                 "&sub3=${subAll[2]}" + "&sub4=${subAll[3]}"
-        Log.d("test2", "$campaign")
     }
 
     /**
@@ -213,19 +213,33 @@ class LoadFragment : Fragment() {
         }
     }
 
+
     /**
      * Открываю или игру или вебвью
      */
     private fun nextScreen() {
         collectingLink() //формирую ссылку
-        if (afStatus == null || !isDef && afStatus == "Organic" )  {
-            findNavController().navigate(R.id.action_loadFragment_to_menuFragment)
-        }
-        if (isDef && afStatus == "Organic" || subAll[1] != null) {
-            Intent(requireActivity(), WebViewActivity::class.java).apply {
-                link.edit().putString("link", "$mainLink").apply()
-                putExtra("link", mainLink)
-                startActivity(this)
+        if (subAll[1] == "test2"){
+            if (afStatus == null || !isDef && afStatus == "Organic" && subAll[1] == null )  {
+                findNavController().navigate(R.id.action_loadFragment_to_menuFragment)
+            }
+            if (isDef && afStatus == "Organic" || subAll[1] != null) {
+                Intent(requireActivity(), WebViewActivity::class.java).apply {
+                    link.edit().putString("link", "$mainLink").apply()
+                    putExtra("link", mainLink)
+                    startActivity(this)
+                }
+            }
+        } else{
+            if (afStatus == null || !isDef && afStatus == "Organic")  {
+                findNavController().navigate(R.id.action_loadFragment_to_menuFragment)
+            }
+            if (isDef && afStatus == "Organic" || subAll[1] != null) {
+                Intent(requireActivity(), WebViewActivity::class.java).apply {
+                    link.edit().putString("link", "$mainLink").apply()
+                    putExtra("link", mainLink)
+                    startActivity(this)
+                }
             }
         }
     }
