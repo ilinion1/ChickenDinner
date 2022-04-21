@@ -74,32 +74,9 @@ class LoadFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //проверяю, если включен интернет, запускаю всю логику, если нет, сообщаю что нужно включить
-        if (checkForInternet(requireActivity())){
-            startWork()
-        } else {
-            Toast.makeText(requireActivity(),"Need to turn on internet", Toast.LENGTH_LONG).show()
-        }
+        startWork()
     }
 
-
-    /**
-     * Проверяю включен ли интернет
-     */
-    private fun checkForInternet(context: Context): Boolean {
-
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        val network = connectivityManager.activeNetwork ?: return false
-        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
-        return when {
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            else -> false
-        }
-    }
 
     /**
      * Запускаю инициализацию и открываю новое окно
